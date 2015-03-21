@@ -1,14 +1,20 @@
-# ${1:Project Name}
-
 Useful git scripts
+
 
 ## Usage
 
-gitlog [git-ref]
+gitlog [[switches]]
+  switches	Additional git log command line switches"
+                    This parameter is optional; will be passed to git log"
 
-gitgrep [regular expression] [git-ref]
 
-git-ref: This is any git ref (e.g. hash, branch name, or tag)
+gitgrep [regex] [[dir]] [[switches]]
+  regex		The regular expression to use in the grep"
+  dir		The root directory in which to run the git grep."
+                    This parameter is optional; default is './'"
+  switches	Additional git grep command line switches"
+                    This parameter is optional; will be passed to git grep"
+
 
 ## Credits
 
