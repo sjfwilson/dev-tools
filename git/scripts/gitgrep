@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# Even though this script is my creation, the idea of putting the 'git grep'
+# command together like this was not mine. I tweaked the implementation to
+# allow for other command switches and for the addition of '-C 3'
+#
+# Sean Wilson -- March 21, 2015
+
+
+PrintUsage()
+{
+  echo "gitgrep [regex] [[dir]] [[switches]]"
+  echo " "
+  echo "  regex		The regular expression to use in the grep"
+  echo "  dir		The root directory in which to run the git grep."
+  echo "                  This parameter is optional; default is './'"
+  echo "  switches	Additional git grep command line switches"
+  echo "                  This parameter is optional; will be passed to git grep"
+}
+
+
+## Command line processing
+if [ -z "$1" ]; then
+  echo "A regular expression must be provided to git grep"
+  PrintUsage
+  exit
+else
+  OURREGEX=$1
+  shift
+fi
+
+if [ -z "$1" ]; then
+  SEARCHPATH="./"
+else
+  SEARCHPATH=$1
+  shift
+fi
+
+
+## git grep command
+git grep $@ -C 3 --heading --line-number -e "${OURREGEX}" --break -- ${SEARCHPATH}
+

@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# Even though this script is my creation, the idea of putting the 'git log'
+# command together like this was not mine. I tweaked the colours so they stand
+# out for me.
+#
+# Sean Wilson -- March 21, 2015
+
+
+## git log command execution
+## pass the command line parameters right through to git log
+git log --color --graph --decorate --pretty=format:'%C(bold yellow)%h%Creset -%C(bold magenta)%d%Creset %s %Cgreen(%cr) %C(bold cyan)<%an>%Creset' --abbrev-commit $@
+
